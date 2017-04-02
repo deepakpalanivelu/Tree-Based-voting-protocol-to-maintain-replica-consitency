@@ -61,7 +61,7 @@ public class BinaryTree {
     }
 
     public void resetState() {
-        for(int i = 0 ; i < 7;i++) {
+        for(int i = 1 ; i < NOOFSERVERS;i++) {
             node[i].state = Node.State.NOTGRANTED ;
         }
     }
