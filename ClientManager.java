@@ -1,9 +1,12 @@
-package consistent;
+package client;
 
 /**
  * Created by deepakrtp on 01/04/17.
  */
 
+import Message.Message;
+import Message.MessageReadRequest;
+import Message.MessageWriteRequest;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -78,10 +81,12 @@ public class ClientManager {
     }
 
 
-    public void readMessage(Message msg) {
+    public void readMessage(MessageReadRequest msg) {
         // Check the message object and see the server id and and take the channel and pass it to client
         int serverID = msg.getrequestingServerId();
         ChannelFuture future =  channelMap.get(serverID);
+
+        // sending message read request object
         client.sendMessage(future,msg);
         setStartTime();
 

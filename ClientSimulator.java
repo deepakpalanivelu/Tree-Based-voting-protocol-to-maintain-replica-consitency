@@ -1,4 +1,8 @@
-package consistent;
+package client;
+
+import Message.Message;
+import Message.MessageWriteRequest;
+import Message.MessageReadRequest;
 
 import java.io.IOException;
 import java.util.Random;
@@ -8,7 +12,7 @@ import java.util.Random;
  * Created by deepakrtp on 01/04/17.
  */
 public class ClientSimulator {
-    ClientManager clientManager;
+    private ClientManager clientManager;
 
     ClientSimulator() throws IOException {
 
@@ -41,31 +45,34 @@ public class ClientSimulator {
                 }
 
             }
-            Message msg = new Message();
+
 
             int randomObjectId = rand.nextInt(3) + 0;
             System.out.println("Random object selected is" + randomObjectId);
-            msg.setobjectID(randomObjectId);
             // randomOperation = 1 write operation
             // Else read Operation
             int randomOperation = rand.nextInt(10) + 1;
 
 
             if (randomOperation == 1) {
-                // write operation
+                // write operations
+                Message msg = new MessageWriteRequest();
+
+                msg.setobjectID(randomObjectId);
                 msg.setEvent(Message.Event.WRITE);
 
                 int randomNumber = rand.nextInt(10) + 1; // generating a random value to update the object
-                msg.setValuetoUpdate(randomNumber);
+                ((MessageWriteRequest)msg).setValuetoUpdate(randomNumber);
                 // passes it to clientManager
                 clientManager.writeMessage(msg);
 
 
             } else {
                 // randomnly selects the server to read from
+                Message msg = new MessageReadRequest();
                 msg.setEvent(Message.Event.READ);
                 int randomServer = rand.nextInt(6) + 0;
-                msg.setrequestingServerId(randomServer);
+                ((MessageReadRequest)msg).setrequestingServerId(randomServer);
                 clientManager.readMessage(msg);
 
             }

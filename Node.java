@@ -1,19 +1,22 @@
-package consistent;
+package client;
 
 /**
  * Created by deepakrtp on 02/04/17.
  */
 public class Node {
-    int serverID;
-    enum State {
-        NOTGRANTED,
-        GRANTED
-    };
-    State state;
+    private int serverID;
+    boolean permissionGranted;
 
     Node(int serverID) {
         this.serverID = serverID;
-        state = State.NOTGRANTED;
+        permissionGranted = false;
 
     }
+     public boolean isPermissionGranted() {
+        return permissionGranted;
+     }
+
+     public void setPermissionGranted(boolean permissionGranted) {
+        permissionGranted = true;
+     }
 }

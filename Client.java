@@ -1,5 +1,6 @@
-package consistent;
+package client;
 
+import Message.Message;
 import io.netty.channel.ChannelFuture;
 
 /**
@@ -7,7 +8,7 @@ import io.netty.channel.ChannelFuture;
  */
 
 public class Client {
-
+    // recieving here as Message object
     public void sendMessage(ChannelFuture future, Message msg) {
 
         future.channel().writeAndFlush(msg);
