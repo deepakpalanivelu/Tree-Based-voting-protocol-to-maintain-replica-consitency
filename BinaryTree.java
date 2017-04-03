@@ -14,7 +14,7 @@ public class BinaryTree {
 
     BinaryTree() {
 
-        for(int i = 1 ; i < node.length;i++) {
+        for(int i = 0; i < node.length; i++) {
             node[i] = new Node(i);
         }
         root = 0;
@@ -26,12 +26,9 @@ public class BinaryTree {
         node[serverID].setPermissionGranted(true);
     }
 
-//    public boolean getState(int serverID) {
-//
-//        return node[serverID].;
-//    }
 
-    public boolean checkifGranted(int serverID)  {
+
+    private boolean checkifGranted(int serverID)  {
         return node[serverID].isPermissionGranted();
 
     }
@@ -41,7 +38,7 @@ public class BinaryTree {
         return checkLogicalTree(root);
     }
 
-    public boolean checkLogicalTree(int root) {
+    private boolean checkLogicalTree(int root) {
 
         int lefttreeIndex = 2 * root + 1;
         int righttreeIndex = 2 * root + 2;
@@ -59,7 +56,7 @@ public class BinaryTree {
     }
 
     public void resetState() {
-        for(int i = 0 ; i < NO_OF_SERVERS;i++) {
+        for(int i = 0 ;i < NO_OF_SERVERS; i++) {
             node[i].setPermissionGranted(false);
         }
     }
